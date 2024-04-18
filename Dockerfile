@@ -1,8 +1,8 @@
 # Dockerfile de nio-medicos
 FROM openjdk:8-jdk-alpine
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-#COPY ./src/main/resources/static/dev.niomedic.com.key /opt/secrets/
 COPY ./src/main/resources/static/telemedicina_lat.key /opt/secrets/
+
 # SECCION PARA PRUEBAS INICIA
 #COPY ./src/jonima2019.crt $JAVA_HOME/jre/lib/security
 #VOLUME /tmp
