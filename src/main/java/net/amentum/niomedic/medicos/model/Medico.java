@@ -20,27 +20,27 @@ import java.util.Set;
 @Entity
 @Table(name = "medico")
 public class Medico implements Serializable {
-	
-	private static final long serialVersionUID = 7504220664222030541L;
-	
-   @Id
-   @Column(name = "id_medico")
-   @GeneratedValue(generator = "UUID")
-   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-   private String idMedico;
-   private String nombre;
-   private String apellidoPaterno;
-   private String apellidoMaterno;
-   private Date fechaNacimiento;
-   private String lugarNacimiento;
-   private String estadoCivil;
-   private String sexo;
-   private String curp;
-   private String rfc;
 
-   private String email;
-   private String telefonoFijo;
-   private String telefonoMovil;
+    private static final long serialVersionUID = 7504220664222030541L;
+
+    @Id
+    @Column(name = "id_medico")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String idMedico;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private Date fechaNacimiento;
+    private String lugarNacimiento;
+    private String estadoCivil;
+    private String sexo;
+    private String curp;
+    private String rfc;
+
+    private String email;
+    private String telefonoFijo;
+    private String telefonoMovil;
     private String id_cat_nacionalidades;
     private String id_cat_entidades;
     private String id_institucion;
@@ -52,23 +52,25 @@ public class Medico implements Serializable {
     private String id_cat_especialidades;
     private String con_id;
     private String pla_id;
-  
-   @Column(unique = true, nullable = false)
-   private Long idUsuario;
-   private Boolean activo;
-   private String userName;
-  @Temporal(TemporalType.TIMESTAMP)
-   private Date fechaCreacion;
-   //   campo compuesto de busqueda
-   private String datosBusqueda;
-   private String idUsuarioZoom;
-   private Integer idUnidadMedica;
 
-   @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "medico")
-   private Collection<Domicilio> domicilioList = new ArrayList<>();
+    private String id_medico_firma;
 
-   @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "medico")
-   private Collection<Especialidad> especialidadList = new ArrayList<>();
+    @Column(unique = true, nullable = false)
+    private Long idUsuario;
+    private Boolean activo;
+    private String userName;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
+    //   campo compuesto de busqueda
+    private String datosBusqueda;
+    private String idUsuarioZoom;
+    private Integer idUnidadMedica;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "medico")
+    private Collection<Domicilio> domicilioList = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "medico")
+    private Collection<Especialidad> especialidadList = new ArrayList<>();
 
    /*@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
    @JoinTable(
@@ -78,46 +80,47 @@ public class Medico implements Serializable {
    )
    private Set<UnidadMedica> unidadMedica = new HashSet<>();*/
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(idMedico);
-   }
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMedico);
+    }
 
-@Override
-public String toString() {
-	return "Medico {"+
-			"idMedico=" + idMedico + 
-			", nombre=" + nombre + 
-			", apellidoPaterno=" + apellidoPaterno +
-			", apellidoMaterno=" + apellidoMaterno + 
-			", fechaNacimiento=" + fechaNacimiento +
-			", lugarNacimiento=" + lugarNacimiento + 
-			", estadoCivil=" + estadoCivil + 
-			", sexo=" + sexo + 
-			", curp=" + curp + 
-			", rfc=" + rfc + 
-			", email=" + email + 
-			", telefonoFijo=" + telefonoFijo + 
-			", telefonoMovil=" + telefonoMovil +
-            ", id_cat_nacionalidades=" + id_cat_nacionalidades +
-            ", id_cat_entidades=" + id_cat_entidades +
-            ", id_institucion=" + id_institucion +
-            ", per_id=" + per_id +
-            ", act_id=" + act_id +
-            ", atr_id=" + atr_id +
-            ", id_cat_clues=" + id_cat_clues +
-            ", jor_id=" + jor_id +
-            ", id_cat_especialidades=" + id_cat_especialidades +
-            ", con_id=" + con_id +
-            ", pla_id=" + pla_id +
-            ", idUsuario=" + idUsuario +
-			", activo=" + activo + 
-			", userName=" + userName + 
-			", fechaCreacion=" + fechaCreacion + 
-			", datosBusqueda=" + datosBusqueda + 
-			", idUsuarioZoom=" + idUsuarioZoom + 
-			"}";
-}
+    @Override
+    public String toString() {
+        return "Medico {"+
+                "idMedico=" + idMedico +
+                ", nombre=" + nombre +
+                ", apellidoPaterno=" + apellidoPaterno +
+                ", apellidoMaterno=" + apellidoMaterno +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", lugarNacimiento=" + lugarNacimiento +
+                ", estadoCivil=" + estadoCivil +
+                ", sexo=" + sexo +
+                ", curp=" + curp +
+                ", rfc=" + rfc +
+                ", email=" + email +
+                ", telefonoFijo=" + telefonoFijo +
+                ", telefonoMovil=" + telefonoMovil +
+                ", id_cat_nacionalidades=" + id_cat_nacionalidades +
+                ", id_cat_entidades=" + id_cat_entidades +
+                ", id_institucion=" + id_institucion +
+                ", per_id=" + per_id +
+                ", act_id=" + act_id +
+                ", atr_id=" + atr_id +
+                ", id_cat_clues=" + id_cat_clues +
+                ", jor_id=" + jor_id +
+                ", id_cat_especialidades=" + id_cat_especialidades +
+                ", con_id=" + con_id +
+                ", pla_id=" + pla_id +
+                ", id_medico_firma=" + id_medico_firma +
+                ", idUsuario=" + idUsuario +
+                ", activo=" + activo +
+                ", userName=" + userName +
+                ", fechaCreacion=" + fechaCreacion +
+                ", datosBusqueda=" + datosBusqueda +
+                ", idUsuarioZoom=" + idUsuarioZoom +
+                "}";
+    }
 
-   
+
 }

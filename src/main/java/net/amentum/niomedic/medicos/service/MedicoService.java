@@ -2,6 +2,7 @@ package net.amentum.niomedic.medicos.service;
 
 import java.util.List; // Sre19062020 Nuevo
 import net.amentum.niomedic.medicos.exception.MedicoException;
+import net.amentum.niomedic.medicos.model.MedicoFirma;
 import net.amentum.niomedic.medicos.views.MedicoPageView;
 import net.amentum.niomedic.medicos.views.MedicoView;
 import org.springframework.data.domain.Page;
@@ -24,4 +25,6 @@ public interface MedicoService {
 
     // Sre19062020 Nuevo servicio para actualizar grupos de medico
     void updateMedicoGroups(Long idUsuario, List<Long> medicoGroups) throws MedicoException;
+
+    MedicoFirma getSignatureById(Integer idFirma) throws MedicoException;
 }

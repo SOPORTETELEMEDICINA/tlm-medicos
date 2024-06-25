@@ -3,6 +3,7 @@ package net.amentum.niomedic.medicos.rest;
 import java.util.List; // Sre19062020 Nuevo
 import net.amentum.common.BaseController;
 import net.amentum.niomedic.medicos.exception.MedicoException;
+import net.amentum.niomedic.medicos.model.MedicoFirma;
 import net.amentum.niomedic.medicos.service.MedicoService;
 import net.amentum.niomedic.medicos.views.MedicoPageView;
 import net.amentum.niomedic.medicos.views.MedicoView;
@@ -154,5 +155,11 @@ public class MedicoRest extends BaseController {
          logger.error("Error al actualizar los grupos del medico por idUsuario- CODE: {} - ", me.getExceptionCode(), ex);
          throw me;
       }
+   }
+
+   @RequestMapping(value = "/firma/{idFirma}", method = RequestMethod.GET)
+   @ResponseStatus(HttpStatus.OK)
+   public MedicoFirma getSignatureById(@PathVariable("idFirma") Integer idFirma) throws MedicoException {
+      return medicoService.getSignatureById(idFirma);
    }
 }

@@ -137,6 +137,7 @@ public class MedicoConverter {
       medicoView.setActivo(medico.getActivo());
       medicoView.setUserName(medico.getUserName());
       medicoView.setFechaCreacion(medico.getFechaCreacion());
+      medicoView.setId_medico_firma(medico.getId_medico_firma());
       //Zoom id
       medicoView.setIdUsuarioZoom(medico.getIdUsuarioZoom());
       medicoView.setIdUnidadMedica(medico.getIdUnidadMedica());

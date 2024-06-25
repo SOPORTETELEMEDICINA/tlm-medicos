@@ -9,8 +9,10 @@ import net.amentum.niomedic.medicos.exception.MedicoException;
 import net.amentum.niomedic.medicos.model.Domicilio;
 import net.amentum.niomedic.medicos.model.Especialidad;
 import net.amentum.niomedic.medicos.model.Medico;
+import net.amentum.niomedic.medicos.model.MedicoFirma;
 import net.amentum.niomedic.medicos.persistence.DomicilioRepository;
 import net.amentum.niomedic.medicos.persistence.EspecialidadRepository;
+import net.amentum.niomedic.medicos.persistence.MedicoFirmaRepository;
 import net.amentum.niomedic.medicos.persistence.MedicoRepository;
 import net.amentum.niomedic.medicos.service.MedicoService;
 import net.amentum.niomedic.medicos.views.MedicoPageView;
@@ -55,6 +57,7 @@ public class MedicoServiceImpl implements MedicoService {
    private final Logger logger = LoggerFactory.getLogger(MedicoServiceImpl.class);
    private final Map<String, Object> colOrderNames = new HashMap<>();
    private MedicoRepository medicoRepository;
+   private MedicoFirmaRepository medicoFirmaRepository;
    private MedicoConverter medicoConverter;
    private DomicilioConverter domicilioConverter;
    private DomicilioRepository domicilioRepository;
@@ -83,6 +86,11 @@ public class MedicoServiceImpl implements MedicoService {
    public void setMedicoRepository(MedicoRepository medicoRepository) {
       this.medicoRepository = medicoRepository;
    }
+
+   @Autowired
+   public void setMedicoFirmaRepository(MedicoFirmaRepository medicoFirmaRepository) {
+      this.medicoFirmaRepository = medicoFirmaRepository;
+    }
 
    @Autowired
    public void setMedicoConverter(MedicoConverter medicoConverter) {
@@ -567,4 +575,9 @@ public class MedicoServiceImpl implements MedicoService {
             throw me;
         }
     }
+
+   @Override
+   public MedicoFirma getSignatureById(Integer idFirma) throws MedicoException {
+      return medicoFirmaRepository.findOne(idFirma);
+   }
 }
