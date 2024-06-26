@@ -53,7 +53,7 @@ public class Medico implements Serializable {
     private String con_id;
     private String pla_id;
 
-    private String id_medico_firma;
+    private Integer id_medico_firma;
 
     @Column(unique = true, nullable = false)
     private Long idUsuario;

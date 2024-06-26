@@ -3,6 +3,7 @@ package net.amentum.niomedic.medicos.service.impl;
 import net.amentum.niomedic.medicos.converter.DomicilioConverter;
 import net.amentum.niomedic.medicos.converter.EspecialidadConverter;
 import net.amentum.niomedic.medicos.converter.MedicoConverter;
+import net.amentum.niomedic.medicos.converter.MedicoFirmaConverter;
 import net.amentum.niomedic.medicos.exception.EspecialidadException;
 import net.amentum.niomedic.medicos.exception.ExceptionServiceCode;
 import net.amentum.niomedic.medicos.exception.MedicoException;
@@ -59,6 +60,7 @@ public class MedicoServiceImpl implements MedicoService {
    private MedicoRepository medicoRepository;
    private MedicoFirmaRepository medicoFirmaRepository;
    private MedicoConverter medicoConverter;
+   private MedicoFirmaConverter medicoFirmaConverter;
    private DomicilioConverter domicilioConverter;
    private DomicilioRepository domicilioRepository;
    private EspecialidadConverter especialidadConverter;
@@ -115,6 +117,11 @@ public class MedicoServiceImpl implements MedicoService {
    @Autowired
    public void setEspecialidadRepository(EspecialidadRepository especialidadRepository) {
       this.especialidadRepository = especialidadRepository;
+   }
+
+   @Autowired
+   public void setMedicoFirmaConverter(MedicoFirmaConverter medicoFirmaConverter) {
+      this.medicoFirmaConverter = medicoFirmaConverter;
    }
 
    @Transactional(readOnly = false, rollbackFor = {MedicoException.class})
@@ -174,7 +181,15 @@ public class MedicoServiceImpl implements MedicoService {
             throw me;
          }
 
+         if (medicoView.getMedicoFirma() != null) {
+            if (medicoView.getMedicoFirma().getNombre() != null && medicoView.getMedicoFirma().getContenido() != null) {
+               MedicoFirma medicoFirma = medicoFirmaConverter.toEntity(medicoView.getMedicoFirma());
 
+               medicoFirmaRepository.save(medicoFirma);
+
+               medicoView.setId_medico_firma(medicoFirma.getIdMedicoFirma());
+            }
+         }
          Medico medico = medicoConverter.toEntity(medicoView, new Medico(), Boolean.FALSE, direccion);
          logger.debug("===>>>Insertar nuevo medico: {}", medico);
          medicoRepository.save(medico);
@@ -310,6 +325,16 @@ public class MedicoServiceImpl implements MedicoService {
         		 espe.addError("idEspecialidad no encotrado: " + IDesp);
         		 throw espe;
         	 }
+         }
+
+         if (medicoView.getMedicoFirma() != null) {
+            if (medicoView.getMedicoFirma().getNombre() != null && medicoView.getMedicoFirma().getContenido() != null) {
+               MedicoFirma medicoFirma = medicoFirmaConverter.toEntity(medicoView.getMedicoFirma());
+
+               medicoFirmaRepository.save(medicoFirma);
+
+               medicoView.setId_medico_firma(medicoFirma.getIdMedicoFirma());
+            }
          }
 
 //            limpiar las listas

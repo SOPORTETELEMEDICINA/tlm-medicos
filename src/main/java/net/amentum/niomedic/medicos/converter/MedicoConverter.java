@@ -52,6 +52,7 @@ public class MedicoConverter {
       medico.setActivo(medicoView.getActivo());
       medico.setUserName(medicoView.getUserName());
       medico.setFechaCreacion((update) ? medico.getFechaCreacion() : new Date());
+      medico.setId_medico_firma(medicoView.getId_medico_firma());
 //      el campo de busqueda
       String datosBusqueda = medicoView.getNombre() + " " + medicoView.getApellidoPaterno() + " " + medicoView.getApellidoMaterno() + " " + medicoView.getCurp();
       medico.setDatosBusqueda(datosBusqueda);
